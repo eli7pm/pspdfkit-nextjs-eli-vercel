@@ -53,11 +53,14 @@ npm run dev
 
 You can now open http://localhost:3000 in your browser and enjoy!
 
-## License
+## Building
 
-This software is licensed under a [modified BSD license](LICENSE).
+1. To deploy a production build you must transpile the `pspdfkit` package in your `next.config.js` file
 
-## Contributing
-
-Please ensure
-[you have signed our CLA](https://pspdfkit.com/guides/web/current/miscellaneous/contributing/) so that we can accept your contributions.
+```js
+const nextConfig = {
+  transpilePackages: ['pspdfkit'],
+};
+module.exports = nextConfig;
+```
+2. Make sure the `pspdfkit-lib` files aren't included in the `.gitignore` file.
