@@ -1,19 +1,26 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+import React, { useEffect, useRef, useCallback} from "react";
 
 export default function App() {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    let PSPDFKit;
+    let PSPDFKit, instance;
 
     (async function () {
-      PSPDFKit = await import("pspdfkit");
-      await PSPDFKit.load({
-        container,
-        document: "/example.pdf",
-        baseUrl: `${window.location.protocol}//${window.location.host}/`,
-      });
+   
+      try{
+        PSPDFKit = await import('pspdfkit')
+        PSPDFKit.unload(container)
+        instance = await PSPDFKit.load({
+          container,
+          document: "/example.pdf",
+          baseUrl: `${window.location.protocol}//${window.location.host}/`,
+        });
+      }catch(error){
+        console.error(error)
+      }
     })();
 
     return () => PSPDFKit && PSPDFKit.unload(container);
