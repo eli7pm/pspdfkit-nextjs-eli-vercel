@@ -9,7 +9,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
-    "scripts": {
+  "scripts": {
     "copy-assets": "cp -R ./node_modules/pspdfkit/dist/pspdfkit-lib ./public/",
     "dev": "npm run copy-assets && next dev",
     "build": "next build",

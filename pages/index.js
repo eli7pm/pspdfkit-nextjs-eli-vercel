@@ -10,17 +10,16 @@ export default function App() {
 
     (async function () {
    
-      try{
         PSPDFKit = await import('pspdfkit')
+
         PSPDFKit.unload(container)
+
         instance = await PSPDFKit.load({
           container,
           document: "/example.pdf",
           baseUrl: `${window.location.protocol}//${window.location.host}/`,
         });
-      }catch(error){
-        console.error(error)
-      }
+  
     })();
 
     return () => PSPDFKit && PSPDFKit.unload(container);
